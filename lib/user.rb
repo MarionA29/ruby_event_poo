@@ -1,34 +1,30 @@
 require "pry"
+
 class User
-  attr_accessor :email, :password
-  @@user_count = 0
 
-  def initialize(email_to_save)
+  attr_accessor :email, :name
+  @@array_of_all=[]
+  @@hashing_of_all={}
+  def initialize(email_to_save,name_to_save)
     @email = email_to_save
+    @name = name_to_save
 
-    @@user_count = @@user_count + 1
+      @@array_of_all << email_to_save
+      @@hashing_of_all[@email]= @name
   end
 
-  def change_password(new_password)
-   @encrypted_password= encrypt(new_password)
-
+  def self.all
+    return @@array_of_all
   end
 
-  def show_itself
-     puts self
-   end
+  def self.find_by_email(email)
+puts @@hashing_of_all[email]
 
-  def self.count
-    return @@user_count
+
   end
-
-private
- def encrypt(string_to_encrypt)
-  return "##ENCRYPTED##"
-end
 
 
 end
 
-#binding.pry
-#puts "end of file"
+puts "end of file"
+binding.pry
